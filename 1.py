@@ -74,7 +74,7 @@ async def ping():
 
 @client.command() #NEWS
 async def news():
-	await client.say("\n".join(news_on()	))
+	await client.say("\n".join(news_on()))
 	print("DONE NEWS")
 
 
