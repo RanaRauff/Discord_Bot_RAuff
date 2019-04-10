@@ -27,7 +27,7 @@ def news_on(): #NEWS STATIC FUNCTION
 		except AttributeError:
 			pass
 	print(ls)	
-	return ls[:8]
+	return ls[:4]
 
 
 @client.event #ON READY
