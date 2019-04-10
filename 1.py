@@ -26,6 +26,7 @@ def news_on(): #NEWS STATIC FUNCTION
 				ls.append("https://news.google.com"+str(i.contents[1].h3.a.get("href"))[1:])
 		except AttributeError:
 			pass
+	print(ls)	
 	return ls[:8]
 
 
