@@ -117,7 +117,7 @@ async def news():
 	await client.say("\n".join(news_on()))
 	print("DONE NEWS")
 
-@clienty.command()
+@client.command()
 async def facebook():
 	
     session = requests.session()
