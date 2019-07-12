@@ -36,11 +36,7 @@ async def on_ready():
 
 	
 	
-import requests
-from bs4 import BeautifulSoup
 
-USERNAME=str(input("ENTER THE USERNAME HERE"))
-PASSWORD=str(input("ENTER THE PASSWORD HERE"))
 PROTECTED_URL = 'https://m.facebook.com/home.php?ref_component=mbasic_home_header'
 
 def login(session, email, password):
