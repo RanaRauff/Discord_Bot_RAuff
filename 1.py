@@ -11,8 +11,8 @@ import asyncio
 date=str(datetime.now().date())
 
 dd="2019-02-09"
-client.run(os.getenv('username'))
-client.run(os.getenv('pass'))
+# client.run(os.getenv('username'))
+# client.run(os.getenv('pass'))
 client= commands.Bot(command_prefix=".")
 # client=discord.Client()
 
@@ -73,7 +73,7 @@ async def echo(*args):
 @client.command()   #JUST REPEAT
 async def ping():
 	
-	await client.say(f'PONG!{username}')
+	await client.say('PONG!')
 
 @client.command() #NEWS
 async def news():
