@@ -71,7 +71,7 @@ async def echo(*args):
 
 @client.command()   #JUST REPEAT
 async def ping():
-	
+	print(os.username)
 	await client.say('PONG!')
 
 @client.command() #NEWS
