@@ -34,6 +34,48 @@ def news_on(): #NEWS STATIC FUNCTION
 async def on_ready():
 	print(f"i m ready {client.user}")
 
+	
+	
+import requests
+from bs4 import BeautifulSoup
+
+USERNAME=str(input("ENTER THE USERNAME HERE"))
+PASSWORD=str(input("ENTER THE PASSWORD HERE"))
+PROTECTED_URL = 'https://m.facebook.com/home.php?ref_component=mbasic_home_header'
+
+def login(session, email, password):
+    response = session.post('https://m.facebook.com/login.php', data={
+        'email': email,
+        'pass': password
+    }, allow_redirects=False)
+
+    assert response.status_code == 302
+    return response.cookies
+
+
+def filter_feeds(feeds):
+    feeds_ret=[]
+    i=0
+    while i!=len(feeds):
+        feeds_ret.append(feeds[i])
+        if "shared" not in feeds[i]:
+            i+=1
+        else:
+            i+=2
+    return feeds_ret            
+                
+
+
+def Home_feeds(soup,filter):
+    feeds=[]        
+    data=soup.find_all("h3")
+    for link in data:
+        if link.strong!=None:
+            feeds.append(link.text)
+
+    if filter=="filter":
+        feeds=filter_feeds(feeds)
+    return feeds            
 
 
 @client.event
@@ -78,6 +120,17 @@ async def ping():
 async def news():
 	await client.say("\n".join(news_on()))
 	print("DONE NEWS")
+
+@clienty.command()
+async def facebook():
+	
+    session = requests.session()
+    cookies = login(session, os.environ.get('username'), os.environ.get('pass'))
+    response = session.get(PROTECTED_URL, cookies=cookies,
+allow_redirects=False)
+    soup=BeautifulSoup(response.text,"html.parser")
+    Home_list=Home_feeds(soup,"filter")
+    print(Home_list)
 
 
 # @client.event
