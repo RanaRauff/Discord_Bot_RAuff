@@ -71,6 +71,7 @@ async def echo(*args):
 
 @client.command()   #JUST REPEAT
 async def ping():
+	
 	await client.say('PONG!')
 
 @client.command() #NEWS
@@ -110,3 +111,7 @@ async def news():
 
 
 client.run(os.getenv('TOKEN'))	
+client.run(os.getenv('username'))
+client.run(os.getenv('pass'))	
+
+
