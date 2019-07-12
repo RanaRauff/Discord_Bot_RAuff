@@ -29,9 +29,6 @@ def news_on(): #NEWS STATIC FUNCTION
         print(ls)
     return(ls[:4])
 
-print(news_on())
-
-
 
 @client.event #ON READY
 async def on_ready():
