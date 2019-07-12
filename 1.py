@@ -18,17 +18,19 @@ client= commands.Bot(command_prefix=".")
 
 
 def news_on(): #NEWS STATIC FUNCTION
-	root=requests.get("https://news.google.com/?hl=en-IN&gl=IN&ceid=IN:en")
-	soup=BeautifulSoup(root.text,"html.parser")
-	ls=[]
-	for i in soup.find_all("article"):
-		try:
-			if i.contents[1].h3.a.get("href")[11:14]!="CBM":
-				ls.append("https://news.google.com"+str(i.contents[1].h3.a.get("href"))[1:])
-		except AttributeError:
-			pass
-	print(ls)	
-	return ls[:4]
+    root=requests.get("https://news.google.com/?hl=en-IN&gl=IN&ceid=IN:en")
+    soup=BeautifulSoup(root.text,"html.parser")
+    print(root)
+    ls=[]
+    for i in soup.find_all("article"):
+        if i.h3 is not None:
+            print(i.h3)
+            ls.append("https://news.google.com" + str(i.h3.a.get("href"))[1:])
+        print(ls)
+    return(ls[:4])
+
+print(news_on())
+
 
 
 @client.event #ON READY
